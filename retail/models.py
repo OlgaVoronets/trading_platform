@@ -17,16 +17,23 @@ class Network(models.Model):
 
 class Trader(models.Model):
     """Модель звена торговой сети:
+    Уровень объекта - выбор из иерархии: 0(производитель), 1(поставщик), 2(продавец).
     Тип объекта - выбор из вариантов: завод, розничная сеть или индивидуальный предприниматель.
     Контактные данные объекта - полный адрес и эл почта.
     Ссылка на поставщика - при наличии.
     Задолженность перед поставщиком - по умолчанию = 0.
     Дата добавления в систему - автоматически, текущая"""
 
+    LEVEL_CHOICES = [
+        ('0', 'производитель'), ('1', 'поставщик'), ('2', 'продавец')
+    ]
+
     TYPE_CHOICES = [
         ('ЗАВОД', 'завод'), ('РОЗНИЦА', 'розничная сеть'), ('ИП', 'индивидуальный предприниматель')
     ]
 
+    trader_level = models.CharField(choices=LEVEL_CHOICES, verbose_name='Уровень звена в иерархии торговой сети',
+                                    default='0')
     trader_type = models.CharField(choices=TYPE_CHOICES, verbose_name='Тип звена торговой сети', default='ЗАВОД')
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')
     email = models.EmailField(unique=True, verbose_name='Почта', **NULLABLE)
