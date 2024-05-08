@@ -15,6 +15,21 @@ class Network(models.Model):
         verbose_name_plural = "Торговые сети"
 
 
+class Product(models.Model):
+    """Модель продукта"""
+
+    title = models.CharField(max_length=200, verbose_name='Название')
+    mod = models.CharField(max_length=50, verbose_name='модель')
+    released_at = models.DateField(verbose_name='Дата выхода на рынок')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
+
+
 class Trader(models.Model):
     """Модель звена торговой сети:
     Уровень объекта - выбор из иерархии: 0(производитель), 1(поставщик), 2(продавец).
@@ -46,24 +61,11 @@ class Trader(models.Model):
                                verbose_name='Задолженность перед поставщиком')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата добавления в систему')
 
+    products = models.ManyToManyField(Product, verbose_name='Продукты')
+
     def __str__(self):
         return self.title
 
     class Meta:
         verbose_name = "Объект"
         verbose_name_plural = "Объекты"
-
-
-class Product(models.Model):
-    """Модель продукта"""
-
-    title = models.CharField(max_length=200, verbose_name='Название')
-    mod = models.CharField(max_length=50, verbose_name='модель')
-    released_at = models.DateField(verbose_name='Дата выхода на рынок')
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Продукт"
-        verbose_name_plural = "Продукты"
