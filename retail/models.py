@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from config.services import NULLABLE
 
@@ -6,6 +7,9 @@ from config.services import NULLABLE
 class Network(models.Model):
     """Модель торговой сети"""
     title = models.CharField(max_length=255, verbose_name='Наименование')
+    # factory = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Производитель')
+    # provider = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Поставщик')
+    trader = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Продавец', **NULLABLE)
 
     def __str__(self):
         return self.title
@@ -50,6 +54,7 @@ class Trader(models.Model):
     trader_level = models.CharField(choices=LEVEL_CHOICES, verbose_name='Уровень звена в иерархии торговой сети',
                                     default='0')
     trader_type = models.CharField(choices=TYPE_CHOICES, verbose_name='Тип звена торговой сети', default='ЗАВОД')
+
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')
     email = models.EmailField(unique=True, verbose_name='Почта', **NULLABLE)
     country = models.CharField(max_length=150, verbose_name='Страна')
@@ -65,6 +70,10 @@ class Trader(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """Возвращает URL-адрес для доступа к определенному экземпляру MyModelName."""
+        return reverse('retail:trader_detail', kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = "Объект"
