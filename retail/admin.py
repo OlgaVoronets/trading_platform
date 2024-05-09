@@ -3,19 +3,15 @@ from django.contrib import admin
 from retail.models import Network, Trader, Product
 
 
-@admin.action(description='Удaлить задолженность перед поставщиком')
-def debt_clear(modeladmin, request, queryset):
-    queryset.update(debt=0)
-
-
 @admin.register(Network)
 class NetworkAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'trader')
 
 
 @admin.register(Trader)
 class TraderAdmin(admin.ModelAdmin):
     list_display = ['city', 'title', 'trader_type', 'debt', 'supplier_url']
+    list_display_links = ('supplier_url',)
     ordering = ('title', 'created_at')
     list_filter = ('city',)
     actions = ['debt_clear']
