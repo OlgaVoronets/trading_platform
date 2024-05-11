@@ -7,9 +7,12 @@ from config.services import NULLABLE
 class Network(models.Model):
     """Модель торговой сети"""
     title = models.CharField(max_length=255, verbose_name='Наименование')
-    # factory = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Производитель')
-    # provider = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Поставщик')
-    trader = models.ForeignKey('Trader', on_delete=models.SET_NULL, verbose_name='Продавец', **NULLABLE)
+    factory = models.ForeignKey('Trader', on_delete=models.SET_NULL, related_name='factory',
+                                verbose_name='Производитель', **NULLABLE)
+    provider = models.ForeignKey('Trader', on_delete=models.SET_NULL, related_name='provider', verbose_name='Поставщик',
+                                 **NULLABLE)
+    trader = models.ForeignKey('Trader', on_delete=models.SET_NULL, related_name='trade', verbose_name='Продавец',
+                               **NULLABLE)
 
     def __str__(self):
         return self.title
@@ -70,10 +73,6 @@ class Trader(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        """Возвращает URL-адрес для доступа к определенному экземпляру MyModelName."""
-        return reverse('retail:trader_detail', kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = "Объект"
