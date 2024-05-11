@@ -21,6 +21,7 @@ class TraderAdmin(admin.ModelAdmin):
     actions = ['debt_clear']
 
     def supplier_url(self, obj):
+        """Ссылка для перехода в карточку поставщика"""
         if obj.supplier:
             url = reverse('admin:retail_trader_change', args=[obj.supplier.id])
             link = '<a href="{}">посмотреть карточку поставщика</a>'.format(url)
@@ -30,6 +31,7 @@ class TraderAdmin(admin.ModelAdmin):
 
     @admin.action(description='Удaлить задолженность перед поставщиком')
     def debt_clear(self, request, queryset):
+        """Действие удаления задолженности"""
         queryset.update(debt=0)
 
 

@@ -1,6 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
-from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from retail.models import Trader, Network, Product
@@ -13,7 +12,7 @@ class TraderListCreateView(generics.ListCreateAPIView):
     serializer_class = TraderSerializer
     queryset = Trader.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ('cuntry',)
+    filterset_fields = ('country',)
     permission_classes = [UserIsActive]
 
 

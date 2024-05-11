@@ -13,12 +13,14 @@ class NetworkSerializer(serializers.ModelSerializer):
 
 class TraderSerializer(serializers.ModelSerializer):
     """Базовый сериализатор для модели звена торговой сети
-    Поле задолженности перед поставщиком запрещено для редактирования"""
-    debt = serializers.ReadOnlyField()
+    Поле задолженности перед поставщиком запрещено для редактирования
+    список продуктов для звена выводится по наименованиям (не id)"""
+    products = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Trader
         fields = '__all__'
+        read_only_fields = ('debt',)
 
 
 class ProductSerializer(serializers.ModelSerializer):

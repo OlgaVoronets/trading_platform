@@ -1,4 +1,5 @@
 from rest_framework import generics, status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from users.models import User
@@ -7,8 +8,12 @@ from users.serializers import UserSerializer
 
 
 class UserCreateView(generics.CreateAPIView):
-    """Регистрация нового пользователя"""
+    """Регистрация нового пользователя
+    Доступна без ограничений, значения поля is_active по умолчанию False.
+    Для доступа к АПИ активный статус учетной записи должен быть присвоен вручную ответственным
+    сотрудником (с правами суперпользователя) через панель администратора"""
     serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         """Переопределение метода для сохранения хешированного пароля в бд (если пароль не хешируется -
