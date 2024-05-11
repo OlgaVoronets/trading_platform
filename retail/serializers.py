@@ -12,7 +12,9 @@ class NetworkSerializer(serializers.ModelSerializer):
 
 
 class TraderSerializer(serializers.ModelSerializer):
-    """Базовый сериализатор для модели звена торговой сети"""
+    """Базовый сериализатор для модели звена торговой сети
+    Поле задолженности перед поставщиком запрещено для редактирования"""
+    debt = serializers.ReadOnlyField()
 
     class Meta:
         model = Trader
