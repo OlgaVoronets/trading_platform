@@ -14,7 +14,7 @@ class NetworkAdmin(admin.ModelAdmin):
 @admin.register(Trader)
 class TraderAdmin(admin.ModelAdmin):
     """Отображение звена торговой сети в панели администратора"""
-    list_display = ['city', 'title', 'trader_type', 'debt', 'supplier_url']
+    list_display = ['id', 'city', 'title', 'trader_type', 'debt', 'supplier_url']
     list_display_links = ('title',)
     ordering = ('title', 'created_at')
     list_filter = ('city',)

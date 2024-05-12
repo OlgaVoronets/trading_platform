@@ -16,7 +16,7 @@ class TraderListCreateView(generics.ListCreateAPIView):
     permission_classes = [UserIsActive]
 
 
-class TraderDetailUpgateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+class TraderDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     """Контроллер просмотра, редактирования и удаления звена торговой сети"""
     serializer_class = TraderSerializer
     queryset = Trader.objects.all()
