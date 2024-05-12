@@ -1,0 +1,158 @@
+[
+  {
+    "model": "retail.network",
+    "pk": 1,
+    "fields": {
+      "title": "Сеть завод-ип",
+      "factory": 1,
+      "provider": null,
+      "trader": 3
+    }
+  },
+  {
+    "model": "retail.network",
+    "pk": 4,
+    "fields": {
+      "title": "Сеть завод-завод",
+      "factory": 1,
+      "provider": 7,
+      "trader": null
+    }
+  },
+  {
+    "model": "retail.network",
+    "pk": 5,
+    "fields": {
+      "title": "Сеть завод-ип-розница",
+      "factory": 7,
+      "provider": 3,
+      "trader": 2
+    }
+  },
+  {
+    "model": "retail.product",
+    "pk": 1,
+    "fields": {
+      "title": "товар_1",
+      "mod": "модель",
+      "released_at": "2024-05-08"
+    }
+  },
+  {
+    "model": "retail.product",
+    "pk": 2,
+    "fields": {
+      "title": "товар_2",
+      "mod": "модель_2",
+      "released_at": "2024-05-09"
+    }
+  },
+  {
+    "model": "retail.product",
+    "pk": 3,
+    "fields": {
+      "title": "товар_3",
+      "mod": "модель_3",
+      "released_at": "2024-05-09"
+    }
+  },
+  {
+    "model": "retail.trader",
+    "pk": 1,
+    "fields": {
+      "trader_level": "0",
+      "trader_type": "ЗАВОД",
+      "title": "Завод",
+      "email": "factory@test.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Улица",
+      "house": "номер",
+      "supplier": null,
+      "debt": "0.00",
+      "created_at": "2024-05-08",
+      "products": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "retail.trader",
+    "pk": 2,
+    "fields": {
+      "trader_level": "2",
+      "trader_type": "РОЗНИЦА",
+      "title": "Розница",
+      "email": "provider@test.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Улица",
+      "house": "номер",
+      "supplier": 1,
+      "debt": "200.00",
+      "created_at": "2024-05-08",
+      "products": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "retail.trader",
+    "pk": 3,
+    "fields": {
+      "trader_level": "2",
+      "trader_type": "ИП",
+      "title": "ИП",
+      "email": "trader@test.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Улица",
+      "house": "номер",
+      "supplier": 2,
+      "debt": "0.00",
+      "created_at": "2024-05-08",
+      "products": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "retail.trader",
+    "pk": 7,
+    "fields": {
+      "trader_level": "0",
+      "trader_type": "ЗАВОД",
+      "title": "другой завод",
+      "email": "another_factory@test.ru",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "street": "Улица",
+      "house": "номер",
+      "supplier": 1,
+      "debt": "100000.00",
+      "created_at": "2024-05-12",
+      "products": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "retail.trader",
+    "pk": 8,
+    "fields": {
+      "trader_level": "0",
+      "trader_type": "ЗАВОД",
+      "title": "Test_by_postman",
+      "email": null,
+      "country": "US",
+      "city": "SomeCity",
+      "street": "SomeStreet",
+      "house": "15/2",
+      "supplier": 2,
+      "debt": "0.00",
+      "created_at": "2024-05-12",
+      "products": []
+    }
+  }
+]
